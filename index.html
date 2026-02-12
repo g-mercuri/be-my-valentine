@@ -247,8 +247,8 @@
             // Generate random position within bounds
             // Add some padding to ensure button doesn't go to the very edge
             const padding = 10;
-            const randomX = Math.max(padding, Math.min(maxX - padding, Math.random() * maxX));
-            const randomY = Math.max(padding, Math.min(maxY - padding, Math.random() * maxY));
+            const randomX = Math.random() * Math.max(0, maxX - 2 * padding) + padding;
+            const randomY = Math.random() * Math.max(0, maxY - 2 * padding) + padding;
             
             button.style.left = randomX + 'px';
             button.style.top = randomY + 'px';
