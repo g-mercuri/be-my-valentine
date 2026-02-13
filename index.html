@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine? 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,43 +15,64 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ee9ca7 0%, #ffdde1 50%, #ee9ca7 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
             text-align: center;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            border-radius: 30px;
+            box-shadow: 0 25px 70px rgba(238, 156, 167, 0.4), 
+                        0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 550px;
             width: 90%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            animation: containerFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         h1 {
-            color: #e91e63;
-            font-size: 2.5em;
+            font-family: 'Pacifico', cursive;
+            color: #ff4757;
+            font-size: 2.8em;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 71, 87, 0.2);
             animation: pulse 1.5s ease-in-out infinite;
         }
 
         .heart {
-            font-size: 4em;
+            font-size: 4.5em;
             margin: 20px 0;
             animation: beat 1s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(255, 71, 87, 0.3));
         }
 
         .question {
-            font-size: 1.5em;
-            color: #333;
+            font-size: 1.6em;
+            color: #2d3436;
             margin: 30px 0;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .buttons {
@@ -61,33 +85,35 @@
         }
 
         button {
-            padding: 15px 40px;
-            font-size: 1.2em;
+            padding: 16px 45px;
+            font-size: 1.3em;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: bold;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .yes-btn {
-            background: #e91e63;
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
             color: white;
         }
 
         .yes-btn:hover {
-            background: #c2185b;
-            transform: scale(1.1);
+            background: linear-gradient(135deg, #ee5a6f 0%, #ff6b81 100%);
+            transform: scale(1.15);
+            box-shadow: 0 12px 30px rgba(255, 71, 87, 0.4);
         }
 
         .no-btn {
-            background: #9e9e9e;
+            background: linear-gradient(135deg, #95a5a6 0%, #bdc3c7 100%);
             color: white;
         }
 
         .message {
             display: none;
-            margin-top: 30px;
         }
 
         .message.show {
@@ -96,10 +122,14 @@
         }
 
         .love-message {
-            font-size: 2em;
-            color: #e91e63;
+            font-size: 2.2em;
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 20px 0;
-            font-weight: bold;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(255, 71, 87, 0.2);
         }
 
         .form-section {
@@ -112,46 +142,177 @@
 
         .input-group label {
             display: block;
-            color: #333;
+            color: #2d3436;
             font-size: 1.1em;
             margin-bottom: 10px;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .input-group input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             font-size: 1em;
-            border: 2px solid #e91e63;
-            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            border: 2px solid #ffdde1;
+            border-radius: 12px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            background: rgba(255, 221, 225, 0.2);
         }
 
         .input-group input:focus {
-            border-color: #c2185b;
+            border-color: #ff4757;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
         }
 
-        .start-btn {
-            background: #e91e63;
-            color: white;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            border: none;
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .language-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 221, 225, 0.2);
+            border: 2px solid #ffdde1;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .language-checkbox:hover {
+            background: rgba(255, 221, 225, 0.4);
+            border-color: #ffb6c1;
+            transform: translateY(-2px);
+        }
+
+        .language-checkbox.selected {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1) 0%, rgba(255, 107, 129, 0.1) 100%);
+            border-color: #ff4757;
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.2);
+        }
+
+        .language-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            cursor: pointer;
+            accent-color: #ff4757;
+        }
+
+        .language-checkbox label {
+            cursor: pointer;
+            margin: 0;
+            font-weight: 500;
+            color: #2d3436;
+            font-size: 0.95em;
+            flex: 1;
+        }
+
+        .language-section-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .select-all-btn {
+            background: transparent;
+            color: #ff4757;
+            padding: 8px 20px;
+            font-size: 0.9em;
+            border: 2px solid #ff4757;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 10px;
+            box-shadow: none;
+        }
+
+        .select-all-btn:hover {
+            background: #ff4757;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .language-selector-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+
+        .language-selector-wrapper.show {
+            max-height: 600px;
+            opacity: 1;
+        }
+
+        .toggle-languages-btn {
+            background: transparent;
+            color: #ff4757;
+            padding: 0;
+            font-size: 0.95em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: underline;
+            box-shadow: none;
+            margin-top: 5px;
+        }
+
+        .toggle-languages-btn:hover {
+            color: #ee5a6f;
+            transform: none;
+        }
+
+        .default-language-note {
+            font-size: 0.95em;
+            color: #636e72;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            color: white;
+            padding: 16px 45px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
             margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.3);
         }
 
         .start-btn:hover {
-            background: #c2185b;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #ee5a6f 0%, #ff6b81 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 71, 87, 0.4);
         }
 
         .hidden {
             display: none;
+        }
+        
+        .skip-info {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #636e72;
+            font-style: italic;
         }
 
         @keyframes pulse {
@@ -253,14 +414,80 @@
             <h1>Be My Valentine? 💖</h1>
             <div class="heart">❤️</div>
             <div class="input-group">
-                <label for="nameInput">Enter their name:</label>
+                <label for="nameInput">Enter your name:</label>
                 <input type="text" id="nameInput" placeholder="e.g., Maria" />
             </div>
             <div class="input-group">
-                <label for="languagesInput">Enter preferred languages (comma-separated):</label>
-                <input type="text" id="languagesInput" placeholder="e.g., Italian, Polish" />
+                <div class="language-section-title">Language: <span class="default-language-note">🇬🇧 English</span></div>
+                <button class="toggle-languages-btn" onclick="toggleLanguageSelector(event)">Change languages</button>
+                <div class="language-selector-wrapper" id="languageSelectorWrapper">
+                    <div class="language-grid" id="languageGrid">
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-english" value="english">
+                        <label for="lang-english">🇬🇧 English</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-spanish" value="spanish">
+                        <label for="lang-spanish">🇪🇸 Spanish</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-italian" value="italian">
+                        <label for="lang-italian">🇮🇹 Italian</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-french" value="french">
+                        <label for="lang-french">🇫🇷 French</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-german" value="german">
+                        <label for="lang-german">🇩🇪 German</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-portuguese" value="portuguese">
+                        <label for="lang-portuguese">🇵🇹 Portuguese</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-polish" value="polish">
+                        <label for="lang-polish">🇵🇱 Polish</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-russian" value="russian">
+                        <label for="lang-russian">🇷🇺 Russian</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-japanese" value="japanese">
+                        <label for="lang-japanese">🇯🇵 Japanese</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-korean" value="korean">
+                        <label for="lang-korean">🇰🇷 Korean</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-chinese" value="chinese">
+                        <label for="lang-chinese">🇨🇳 Chinese</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-arabic" value="arabic">
+                        <label for="lang-arabic">🇸🇦 Arabic</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-dutch" value="dutch">
+                        <label for="lang-dutch">🇳🇱 Dutch</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-greek" value="greek">
+                        <label for="lang-greek">🇬🇷 Greek</label>
+                    </div>
+                    <div class="language-checkbox" onclick="toggleLanguage(this)">
+                        <input type="checkbox" id="lang-turkish" value="turkish">
+                        <label for="lang-turkish">🇹🇷 Turkish</label>
+                    </div>
+                    </div>
+                    <button class="select-all-btn" onclick="toggleSelectAll(event)">Select All</button>
+                </div>
             </div>
             <button class="start-btn" onclick="startQuestion()">Continue 💕</button>
+            <p class="skip-info">💡 Tip: Pre-configure name and languages in the code to skip this form!</p>
         </div>
 
         <div id="question-section" class="hidden">
@@ -280,6 +507,25 @@
     </div>
 
     <script>
+        // ========== CONFIGURATION SECTION ==========
+        // Customize these values to skip the input form and personalize the experience!
+        // Leave empty strings ("") to show the input form.
+        
+        const CONFIG = {
+            // The name of your special someone (e.g., "Maria", "Alex")
+            defaultName: "",
+            
+            // Languages for "I love you" messages, separated by commas
+            // Options: english, spanish, italian, french, german, portuguese, polish, 
+            //          russian, japanese, korean, chinese, arabic, dutch, greek, turkish
+            defaultLanguages: "",
+            
+            // If true, will skip the form if defaultName and defaultLanguages are set
+            skipFormIfConfigured: true
+        };
+        
+        // ========== END CONFIGURATION ==========
+        
         const loveTranslations = {
             'english': 'I love you!',
             'spanish': 'Te amo!',
@@ -297,13 +543,108 @@
             'greek': 'Σ\'αγαπώ!',
             'turkish': 'Seni seviyorum!'
         };
+        
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            if (CONFIG.skipFormIfConfigured && CONFIG.defaultName && CONFIG.defaultLanguages) {
+                // Auto-start with configured values
+                document.getElementById('personName').textContent = CONFIG.defaultName + ' 💕';
+                window.selectedLanguages = CONFIG.defaultLanguages.split(',').map(lang => lang.trim().toLowerCase());
+                
+                document.getElementById('form-section').classList.add('hidden');
+                document.getElementById('question-section').classList.remove('hidden');
+            } else {
+                // Pre-select languages (config or default to English)
+                const defaultLangs = CONFIG.defaultLanguages || 'English';
+                const configuredLangs = defaultLangs.split(',').map(lang => lang.trim().toLowerCase());
+                configuredLangs.forEach(lang => {
+                    const checkbox = document.getElementById(`lang-${lang}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        checkbox.parentElement.classList.add('selected');
+                    }
+                });
+                updateLanguageDisplay();
+            }
+        });
+
+        function toggleLanguageSelector(event) {
+            event.preventDefault();
+            const wrapper = document.getElementById('languageSelectorWrapper');
+            const button = event.target;
+            
+            if (wrapper.classList.contains('show')) {
+                wrapper.classList.remove('show');
+                button.textContent = 'Change languages';
+            } else {
+                wrapper.classList.add('show');
+                button.textContent = 'Hide language options';
+            }
+        }
+
+        function updateLanguageDisplay() {
+            const selectedCheckboxes = document.querySelectorAll('.language-checkbox input[type="checkbox"]:checked');
+            const noteElement = document.querySelector('.default-language-note');
+            
+            if (selectedCheckboxes.length === 0) {
+                noteElement.textContent = 'None selected';
+            } else if (selectedCheckboxes.length === 1) {
+                const lang = selectedCheckboxes[0].nextElementSibling.textContent;
+                noteElement.textContent = lang;
+            } else {
+                const langs = Array.from(selectedCheckboxes).map(cb => 
+                    cb.nextElementSibling.textContent.split(' ')[1]
+                ).join(', ');
+                noteElement.textContent = langs;
+            }
+        }
+
+        function toggleLanguage(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            // Toggle checkbox if clicking on the div (but not if clicking directly on checkbox)
+            if (event.target !== checkbox) {
+                checkbox.checked = !checkbox.checked;
+            }
+            // Update visual state
+            if (checkbox.checked) {
+                element.classList.add('selected');
+            } else {
+                element.classList.remove('selected');
+            }
+            updateLanguageDisplay();
+        }
+
+        function toggleSelectAll(event) {
+            event.preventDefault();
+            const checkboxes = document.querySelectorAll('.language-checkbox input[type="checkbox"]');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = !allChecked;
+                const parent = checkbox.parentElement;
+                if (checkbox.checked) {
+                    parent.classList.add('selected');
+                } else {
+                    parent.classList.remove('selected');
+                }
+            });
+            
+            event.target.textContent = allChecked ? 'Select All' : 'Deselect All';
+            updateLanguageDisplay();
+        }
 
         function startQuestion() {
             const name = document.getElementById('nameInput').value.trim();
-            const languages = document.getElementById('languagesInput').value.trim();
+            const selectedCheckboxes = document.querySelectorAll('.language-checkbox input[type="checkbox"]:checked');
+            const languages = Array.from(selectedCheckboxes).map(cb => cb.value);
 
-            if (!name || !languages) {
-                alert('Please fill in both fields!');
+            if (!name) {
+                alert('Please enter your name!');
+                return;
+            }
+
+            if (languages.length === 0) {
+                alert('Please select at least one language!');
                 return;
             }
 
@@ -311,7 +652,7 @@
             document.getElementById('form-section').classList.add('hidden');
             document.getElementById('question-section').classList.remove('hidden');
 
-            window.selectedLanguages = languages.split(',').map(lang => lang.trim().toLowerCase());
+            window.selectedLanguages = languages;
         }
 
         function sayYes() {
@@ -321,17 +662,20 @@
             const messagesDiv = document.getElementById('loveMessages');
             messagesDiv.innerHTML = '';
 
-            window.selectedLanguages.forEach(lang => {
+            window.selectedLanguages.forEach((lang, index) => {
                 const message = loveTranslations[lang] || `I love you (${lang})!`;
                 const messageDiv = document.createElement('div');
                 messageDiv.className = 'love-message';
                 messageDiv.textContent = message + ' ❤️';
+                messageDiv.style.animationDelay = (index * 0.3) + 's';
+                messageDiv.style.animation = 'fadeIn 0.8s ease-in-out forwards';
+                messageDiv.style.opacity = '0';
                 messagesDiv.appendChild(messageDiv);
             });
             
             // Add confetti effect
-            for (let i = 0; i < 50; i++) {
-                createHeart();
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => createHeart(), i * 50);
             }
         }
 
@@ -365,21 +709,23 @@
         }
 
         function createHeart() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝'];
             const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
             heart.style.position = 'fixed';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.top = '-50px';
-            heart.style.fontSize = Math.random() * 30 + 20 + 'px';
-            heart.style.opacity = '0.8';
+            heart.style.fontSize = Math.random() * 40 + 20 + 'px';
+            heart.style.opacity = '0.9';
             heart.style.pointerEvents = 'none';
-            heart.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+            heart.style.zIndex = '1000';
+            heart.style.animation = `fall ${Math.random() * 3 + 3}s linear`;
             
             document.body.appendChild(heart);
             
             setTimeout(() => {
                 heart.remove();
-            }, 5000);
+            }, 6000);
         }
 
         const style = document.createElement('style');
